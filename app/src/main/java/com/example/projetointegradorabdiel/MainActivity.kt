@@ -12,7 +12,7 @@ import androidx.activity.ComponentActivity
 class MainActivity : ComponentActivity() {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
-        fun principal(pass1: String) {
+        val password = fun(pass1: String ?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_main)
 
@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
 
                 if (nome == "Abdiel" && senha2 == pass1) {
                     resposta.text = "Bem vindo $nome"
-                } else if (nome == " " && senha2 == " ") {
+                } else if (nome == " " || senha2 == " ") {
                     resposta.text = "Todos os campos devem ser preenchidos"
                 } else {
                     resposta.text = "Usuario ou senha incorretos!"
@@ -43,49 +43,53 @@ class MainActivity : ComponentActivity() {
 
             }
         }
-        fun resetarSenha() {
+
+
+
             val senha = findViewById<EditText>(R.id.editTextText5)
             val resetaSenha = findViewById<TextView>(R.id.textView)
             resetaSenha.setOnClickListener {
-                setContentView(R.layout.reseta_senha)
-                val user = findViewById<EditText>(R.id.editTextText)
-                val senha1 = findViewById<EditText>(R.id.editTextTextPassword)
-                val senha2 = findViewById<EditText>(R.id.editTextTextPassword2)
-                val button = findViewById<Button>(R.id.button2)
-                val texto = findViewById<TextView>(R.id.textView7)
-                button.setOnClickListener {
-                    val usuario = user.text.toString()
-                    val pass1 = senha1.text.toString()
-                    val pass2 = senha2.text.toString()
-                    if (usuario == "Abdiel" && pass1 == pass2) {
-                        texto.text = "Senha salva"
+                fun resetarSenha() {
+                    setContentView(R.layout.reseta_senha)
+                    val user = findViewById<EditText>(R.id.editTextText)
+                    val senha1 = findViewById<EditText>(R.id.editTextTextPassword)
+                    val senha2 = findViewById<EditText>(R.id.editTextTextPassword2)
+                    val button = findViewById<Button>(R.id.button2)
+                    val texto = findViewById<TextView>(R.id.textView7)
+
+                    button.setOnClickListener {
+                        val usuario = user.text.toString()
+                        val pass1 = senha1.text.toString()
+                        val pass2 = senha2.text.toString()
+
+                        if (usuario == "Abdiel" && pass1 == pass2) {
+                            texto.text = "Senha salva"
+                        }
+
+                        password(pass1)
+                        setContentView(R.layout.activity_main)
+                        senha.setText(pass2)
                     }
-
-                    principal(pass1)
-                    setContentView(R.layout.activity_main)
-                    senha.setText(pass2)
                 }
-            }
-        }
-        resetarSenha()
+                val voltarLogin = findViewById<TextView>(R.id.textView8)
+                val senha2 = findViewById<EditText>(R.id.editTextTextPassword2)
+                val pass2 = senha2.text.toString()
+                voltarLogin.setOnClickListener {
 
-//            voltarLogin.setOnClickListener {
-//
-//
-//                setContentView(R.layout.activity_main)
-//
-//
-//
-//                val pass2 = senha2.text.toString()
-//                val senha = findViewById<EditText>(R.id.editTextText5)
-//
-//                var senhaNova = senha.text.toString()
-//
-//                senhaNova = pass2
-//            }
+
+                    setContentView(R.layout.activity_main)
+
+                }
+                resetarSenha()
+        }
+
+
+
 
 
     }
+
+
 }
 
 

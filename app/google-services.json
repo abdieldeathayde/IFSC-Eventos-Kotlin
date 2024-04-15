@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "487742995683",
+    "project_id": "projetointegradorabdiel",
+    "storage_bucket": "projetointegradorabdiel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487742995683:android:156ce56f7f58cbf56199d6",
+        "android_client_info": {
+          "package_name": "com.example.projetointegradorabdiel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcdi4VevL1dS8QRI2BmMqHe516UB9Qmig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

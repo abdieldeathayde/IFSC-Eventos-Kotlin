@@ -2,7 +2,6 @@ package com.example.projetointegradorabdiel
 
 import android.os.Bundle
 import android.view.View
-
 import androidx.core.content.ContextCompat
 import androidx.leanback.app.ErrorSupportFragment
 
@@ -18,13 +17,14 @@ class ErrorFragment : ErrorSupportFragment() {
 
     internal fun setErrorContent() {
         imageDrawable =
-            ContextCompat.getDrawable(context!!, androidx.leanback.R.drawable.lb_ic_sad_cloud)
+            ContextCompat.getDrawable(requireContext(), androidx.leanback.R.drawable.lb_ic_sad_cloud)
         message = resources.getString(R.string.error_fragment_message)
         setDefaultBackground(TRANSLUCENT)
 
         buttonText = resources.getString(R.string.dismiss_error)
         buttonClickListener = View.OnClickListener {
-            fragmentManager!!.beginTransaction().remove(this@ErrorFragment).commit()
+            // CORREÇÃO: trocado 'fragmentManager' por 'parentFragmentManager'
+            parentFragmentManager.beginTransaction().remove(this@ErrorFragment).commit()
         }
     }
 

@@ -4,8 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
-import com.example.projetointegradorabdiel.databinding.ActivitySingInBinding
 import com.google.firebase.auth.FirebaseAuth
+import kotlin.jvm.java
+
 class SingInActivity : FragmentActivity() {
 
     private lateinit var binding: ActivitySingInBinding

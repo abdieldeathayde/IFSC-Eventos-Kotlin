@@ -4,18 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import com.example.projetointegradorabdiel.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import kotlin.jvm.java
 
-class SingInActivity : FragmentActivity() {
+class SignInActivity : FragmentActivity() {
 
-    private lateinit var binding: ActivitySingInBinding
+    private lateinit var binding: ActivitySignInBinding
     private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySingInBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding = ActivitySignInBinding.inflate(layoutInflater)
+        val contentView = setContentView(binding.root)
 
 
         firebaseAuth = FirebaseAuth.getInstance()

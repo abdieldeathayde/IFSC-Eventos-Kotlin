@@ -2,6 +2,7 @@
     <string name="app_name">ProjetoIntegradorAbdiel</string>
     <string name="logo">Logo</string>
     <string name="title_activity_sign_up">Leanback SignUpActivity</string>
+    <string name="title_activity_sign_in">Leanback SignInActivity</string>
     <string name="browse_title">Videos by Your Company</string>
     <string name="related_movies">Related Videos</string>
     <string name="grid_view">Grid View</string>
@@ -18,5 +19,4 @@
     <!-- Error messages -->
     <string name="error_fragment_message">An error occurred</string>
     <string name="dismiss_error">Dismiss</string>
-    <string name="title_activity_sing_in">Leanback SingInActivity</string>
 </resources>

@@ -5,6 +5,12 @@ plugins {
 }
 
 android {
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+
     namespace = "com.example.projetointegradorabdiel"
     compileSdk = 34
 

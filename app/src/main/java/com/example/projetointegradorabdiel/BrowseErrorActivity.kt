@@ -22,7 +22,7 @@ class BrowseErrorActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up2)
+        setContentView(R.layout.activity_sign_up)
 //        if (savedInstanceState == null) {
 //            getFragmentManager()
 //        }

@@ -4,7 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
-import com.example.projetointegradorabdiel.databinding.ActivitySignUpBinding
+// CORREÇÃO: Importe a classe de binding correta
+import com.example.projetointegradorabdiel.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
 import kotlin.jvm.java
 
@@ -16,8 +17,7 @@ class SignInActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
-        val contentView = setContentView(binding.root)
-
+        setContentView(binding.root) // Simplificado para maior clareza
 
         firebaseAuth = FirebaseAuth.getInstance()
         binding.textView.setOnClickListener {
@@ -33,7 +33,9 @@ class SignInActivity : FragmentActivity() {
 
                 firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val intent = Intent(this, SignUpActivity::class.java)
+                        // Atenção: Após o login, você está redirecionando para a tela de cadastro (SignUpActivity).
+                        // Talvez o ideal fosse ir para uma tela principal (ex: MainActivity).
+                        val intent = Intent(this, MainActivity::class.java) // Sugestão
                         startActivity(intent)
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()

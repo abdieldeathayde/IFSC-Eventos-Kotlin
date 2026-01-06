@@ -1,14 +1,15 @@
 package com.example.projetointegradorabdiel
 
-import android.net.Uri
 import android.os.Bundle
 import androidx.leanback.app.VideoSupportFragment
 import androidx.leanback.app.VideoSupportFragmentGlueHost
 import androidx.leanback.media.MediaPlayerAdapter
 import androidx.leanback.media.PlaybackTransportControlGlue
 import androidx.leanback.widget.PlaybackControlsRow
+import androidx.core.net.toUri
 
 /** Handles video playback with media controls. */
+@Suppress("DEPRECATION")
 class PlaybackVideoFragment : VideoSupportFragment() {
 
     private lateinit var mTransportControlGlue: PlaybackTransportControlGlue<MediaPlayerAdapter>
@@ -23,13 +24,13 @@ class PlaybackVideoFragment : VideoSupportFragment() {
         val playerAdapter = MediaPlayerAdapter(context)
         playerAdapter.setRepeatAction(PlaybackControlsRow.RepeatAction.INDEX_NONE)
 
-        mTransportControlGlue = PlaybackTransportControlGlue(getActivity(), playerAdapter)
+        mTransportControlGlue = PlaybackTransportControlGlue(activity, playerAdapter)
         mTransportControlGlue.host = glueHost
         mTransportControlGlue.title = title
         mTransportControlGlue.subtitle = description
         mTransportControlGlue.playWhenPrepared()
 
-        playerAdapter.setDataSource(Uri.parse(videoUrl))
+        playerAdapter.setDataSource(videoUrl?.toUri())
     }
 
     override fun onPause() {

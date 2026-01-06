@@ -40,7 +40,12 @@ class CardPresenter : Presenter() {
         return Presenter.ViewHolder(cardView)
     }
 
-    override fun onBindViewHolder(viewHolder: Presenter.ViewHolder, item: Any) {
+    // CORREÇÃO: Remova a outra função onBindViewHolder e implemente a lógica aqui.
+    override fun onBindViewHolder(viewHolder: ViewHolder, item: Any?) {
+        if (item == null) {
+            return // Se o item for nulo, não há nada a fazer.
+        }
+
         val movie = item as Movie
         val cardView = viewHolder.view as ImageCardView
 
@@ -49,11 +54,13 @@ class CardPresenter : Presenter() {
             cardView.titleText = movie.title
             cardView.contentText = movie.studio
             cardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT)
-            Glide.with(viewHolder.view.context)
-                .load(movie.cardImageUrl)
-                .centerCrop()
-                .error(mDefaultCardImage)
-                .into(cardView.mainImageView)
+            cardView.mainImageView?.let {
+                Glide.with(viewHolder.view.context)
+                    .load(movie.cardImageUrl)
+                    .centerCrop()
+                    .error(mDefaultCardImage)
+                    .into(it)
+            }
         }
     }
 
@@ -67,7 +74,7 @@ class CardPresenter : Presenter() {
 
     private fun updateCardBackgroundColor(view: ImageCardView, selected: Boolean) {
         val color = if (selected) sSelectedBackgroundColor else sDefaultBackgroundColor
-        // Both background colors should be set because the view"s background is temporarily visible
+        // Both background colors should be set because the view's background is temporarily visible
         // during animations.
         view.setBackgroundColor(color)
         view.setInfoAreaBackgroundColor(color)

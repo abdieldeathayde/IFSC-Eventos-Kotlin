@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projetointegradorabdiel.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
+import kotlin.jvm.java
 
 class SignInActivity : AppCompatActivity() {
 
@@ -15,11 +16,10 @@ class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        firebaseAuth = FirebaseAuth.getInstance()
-
         binding = ActivitySignInBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val contentView = setContentView(binding.root)
 
+        firebaseAuth = FirebaseAuth.getInstance()
 
         // Ir para tela de cadastro
         binding.textView.setOnClickListener {

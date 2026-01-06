@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projetointegradorabdiel.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
-import kotlin.jvm.java
 
 class SignInActivity : AppCompatActivity() {
 
@@ -17,7 +16,7 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivitySignInBinding.inflate(layoutInflater)
-        val contentView = setContentView(binding.root)
+        setContentView(binding.root) // ✅ OBRIGATÓRIO
 
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -28,34 +27,36 @@ class SignInActivity : AppCompatActivity() {
 
         // Botão de login
         binding.button.setOnClickListener {
+
             val email = binding.emailEt.text.toString().trim()
             val pass = binding.passET.text.toString().trim()
 
-            if (email.isNotEmpty() && pass.isNotEmpty()) {
-
-                firebaseAuth
-                    .signInWithEmailAndPassword(email, pass)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            // Login OK → tela principal
-                            startActivity(Intent(this, MainActivity::class.java))
-                            finish() // impede voltar para login
-                        } else {
-                            Toast.makeText(
-                                this,
-                                task.exception?.message ?: "Erro ao autenticar",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-
-            } else {
+            if (email.isEmpty() || pass.isEmpty()) {
                 Toast.makeText(
                     this,
                     "Email e senha não podem estar vazios",
                     Toast.LENGTH_SHORT
                 ).show()
+                return@setOnClickListener
             }
+
+            firebaseAuth
+                .signInWithEmailAndPassword(email, pass)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+
+                        // ✅ Login OK → ir para tela principal
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+
+                    } else {
+                        Toast.makeText(
+                            this,
+                            task.exception?.message ?: "Erro ao autenticar",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
         }
     }
 }

@@ -22,8 +22,11 @@ class SignUpActivity : AppCompatActivity() {
 
         // Voltar para login
         binding.textView.setOnClickListener {
-            startActivity(Intent(this, SignInActivity::class.java))
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
+
             finish()
+
         }
 
         // Botão de cadastro
